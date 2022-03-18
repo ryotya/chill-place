@@ -1,0 +1,46 @@
+<%= form_with(model: post) do |form| %>
+  <% if post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+        <% post.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title, :class => 'text-xl' %>
+    <%= form.text_field :title, :class => 'py-4 px-16 border raouded bg-gray-50' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :content, :class => 'text-xl' %>
+    <%= form.text_area :content, :class => 'py-4 px-16 border raouded bg-gray-50' %>
+  </div>
+
+  <div class="container_buttons my-8">
+    <button class="button button_shape"><%= form.submit %></button>
+  </div>
+<% end %>
+
+
+<style>
+  .button {
+    width: 200px;
+    height: 50px;
+    background-color: #ffffff;
+    border: 2px solid #000000;
+    border-bottom: 5px solid #000000;
+    font-size: 1.2em;
+    color: #000000;
+    letter-spacing: 1px;
+    transition: 1s;
+  }
+
+  .button_shape:hover {
+    border-radius: 20px;
+  }
+</style>
