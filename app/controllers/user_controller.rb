@@ -5,5 +5,7 @@ class UserController < ApplicationController
   end
 
   def show
+    @user = current_user
+    @userPosts = current_user.posts
   end
 end

@@ -33,8 +33,7 @@
         </div>
         <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
             <% if user_signed_in? %>
-
-            <%= link_to("プロフィール変更", edit_user_registration_path, {class: "mr-4 text-lg"}) %>
+            <%= link_to("マイページ", user_show_path, {class: "mr-4 text-lg"}) %>
             <%= link_to("ログアウト", destroy_user_session_path, {class: "text-lg"}) %>
           <% else %>
             <%= link_to("サインアップ", new_user_registration_path, {class: "mr-4 text-lg"}) %>

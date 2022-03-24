@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :ensure_user, only: [:edit, :update, :destroy]
 
   # GET /posts or /posts.json
   def index
@@ -65,6 +66,13 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:title, :content)
+      params.require(:post).permit(:title, :content).merge(user_id: current_user.id)
     end
+
+    def ensure_user
+      @posts = current_user.posts
+      @post = @posts.find_by(id: params[:id])
+      redirect_to new_post_path unless @post
+    end
+
 end

@@ -1,20 +1,27 @@
-<div class="grid grid-cols-3 text-center mt-16">
+<div class="grid grid-cols-3 mt-16">
   <div class="col-start-2">
     <div class="container_buttons my-8">
       <button class="button button_shape"><%= link_to 'New Post', new_post_path %></button>
     </div>
-      <div class="">
-        <% @posts.each do |post| %>
-          <div class="border rounded-sm mb-8">
-            <h4><%= post.title %></h4>
-            <p><%= post.content %></p>
-            <div class="grid grid-cols-3">
-              <p><%= link_to '詳しく見る', post %></p>
-              <p><%= link_to '編集', edit_post_path(post) %></p>
-              <p><%= link_to '削除', post, method: :delete, data: { confirm: 'Are you sure?' } %></p>
-            </div>
-          </div>
-        <% end %>
+        <div class="">
+          <% @posts.each do |post| %>
+              <div class="border my-8">
+                  <div class="py-4 px-8">
+                      <h2 class="text-xl py-2"><%= post.title %></h2>
+                      <h2 class="text-base text-gray-500 py-2"><%= post.content %></h2>
+                      <div class="grid grid-cols-5 text-center">
+                          <p class="col-start-2"><%= link_to '詳しく見る', post %></p>
+                          <% if post.user == current_user %>
+                            <p><%= link_to '編集', edit_post_path(post) %></p>
+                            <p><%= link_to '削除', post, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+                          <% else %>
+                            <p></p>
+                            <p></p>
+                          <% end %>
+                      </div>
+                  </div>
+              </div>
+          <% end %>
       </div>
   </div>
 </div>
